@@ -1,5 +1,5 @@
 import csv
-from guitar import Guitar  # Importing Guitar class from guitar.py
+from guitar import Guitar
 
 def main():
     filename = 'guitars.csv'
@@ -12,6 +12,7 @@ def main():
     add_guitars(guitars)
     guitars.sort()
     write_guitars_to_file(filename, guitars)
+
 
     print("These are the updated guitars:")
     updated_guitars = load_guitars_from_file(filename)
@@ -29,7 +30,7 @@ def load_guitars_from_file(filename):
     return guitars
 
 def add_guitars(guitars):
-    """Function to add new guitars via user input."""
+    """Add new guitars to the list via user input."""
     while True:
         name = input("Enter the name of the guitar: ")
         if name == "":
@@ -37,9 +38,10 @@ def add_guitars(guitars):
         year = int(input("Enter the year of the guitar: "))
         cost = float(input("Enter the cost of the guitar: "))
         guitars.append(Guitar(name, year, cost))
+        print(f"Added {name}")
 
 def write_guitars_to_file(filename, guitars):
-    """Write guitars to a CSV file."""
+    """Write the list of guitars to a CSV file."""
     with open(filename, 'w', newline='') as file:
         writer = csv.writer(file)
         for guitar in guitars:
